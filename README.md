@@ -1,7 +1,7 @@
 # GrocceryStore
 Rohan Prakash's Solution to Gelber take home assessment, the Groccery Store problem.
 
-# GrocceryStore.py
+### GrocceryStore.py
 Class implementations.
-# Simulation.py
+### Simulation.py
 Driver file to run Groccery store simulations.
