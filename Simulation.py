@@ -1,4 +1,4 @@
-from GrocceryStore import *
+from GroceryStore import *
 
 def main():
     my_GS, packet_dict = Utility.parseTestFile()

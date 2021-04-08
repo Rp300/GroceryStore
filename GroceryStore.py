@@ -28,7 +28,7 @@ class Packet:
 
 class Customer:
     """
-    A cutomer that checks out at a register in a groccery store.
+    A cutomer that checks out at a register in a Grocery store.
     ...
 
     Attributes
@@ -87,7 +87,7 @@ class Customer:
 
 class Register:
     """
-    A register in a groccery store that is either in training or not. This status affects item processing rate.
+    A register in a Grocery store that is either in training or not. This status affects item processing rate.
     ...
 
     Attributes
@@ -97,7 +97,7 @@ class Register:
     rate : float
         The rate at which register processes items. 1/min for normal and 1/2min for training register.
     time : int
-        Current time of register and groccery store, maintained by updateTime().
+        Current time of register and Grocery store, maintained by updateTime().
     customer_count : int
         Number of customers in register line.
     customer_list : deque<Customer>
@@ -112,7 +112,7 @@ class Register:
         Peek at number of items the last customer in line has at current time epoch.
     
     updateTime(new_time)
-        Adjusts and simulates register item processing to the latest Groccery Store time provided.
+        Adjusts and simulates register item processing to the latest Grocery Store time provided.
 
     computeEndTime()
         Based on current customer queue, returns time when all customer items have been processed.
@@ -154,12 +154,12 @@ class Register:
             return self.customer_list[-1].items
 
     def updateTime(self, new_time):
-        """Adjusts and simulates register item processing to the latest Groccery Store time.
+        """Adjusts and simulates register item processing to the latest Grocery Store time.
 
         Parameters
         ----------
         new_time : int
-            Latest time epoch inputed to groccery store
+            Latest time epoch inputed to Grocery store
         """
         timeElapsed = new_time - self.time
         itemsProcessed = self.rate * timeElapsed
@@ -202,7 +202,7 @@ class Register:
             print(c)
         print()
 
-class GrocceryStore:
+class GroceryStore:
     """
     The object that represents the universe where the register-customer simulation takes place. There are the following steps: pre-processing, processing packets, and final time calculation that take place for a simulation test file.
     ...
@@ -210,24 +210,24 @@ class GrocceryStore:
     Attributes
     ----------
     time : int
-        The current time epoch of the Groccery store, maintained by updateTime.
+        The current time epoch of the Grocery store, maintained by updateTime.
     register_count : int
-        The number of registers in Groccery store.
+        The number of registers in Grocery store.
     register_list : list<Register>
-        A list of the register objects part of the Groccery store.
+        A list of the register objects part of the Grocery store.
     time_packet_list : deque<Packet>
         A queue of time stamp Packets to process, ordered by time.
 
     Methods
     -------
     updateTime(new_time)
-        Adjusts and simulates register item processing to the latest Groccery Store time provided.
+        Adjusts and simulates register item processing to the latest Grocery Store time provided.
 
     pushCustomer(next_customer)
         Add a customer to the appropriate register line based on customer type rules.
 
     addTimePacket(time_packet)
-        Add customer time stamp packet to the Groccery store to be proccessed during simulation.
+        Add customer time stamp packet to the Grocery store to be proccessed during simulation.
     
     processPackets()
         Iterate through packets in pre-proccessed queue, and propogate time update plus new customers for each.
@@ -236,7 +236,7 @@ class GrocceryStore:
 
 
     show()
-        Provides a simple visualization of current customer queue for each register in the Groccery Store.
+        Provides a simple visualization of current customer queue for each register in the Grocery Store.
     """
     def __init__(self,register_count):
         """ Initializes 'register_count' number of Register objects making the last one a Training register.
@@ -244,7 +244,7 @@ class GrocceryStore:
         Parameters
         ----------
         register_count : int
-            The number of registers in Groccery store.
+            The number of registers in Grocery store.
         """
         self.time = 0
         self.register_count = register_count
@@ -255,7 +255,7 @@ class GrocceryStore:
             self.register_list.append(Register(i, i == register_count))
 
     def updateTime(self, new_time):
-        """ Adjusts and simulates registers and customers to the latest Groccery Store time provided by latest time packet.
+        """ Adjusts and simulates registers and customers to the latest Grocery Store time provided by latest time packet.
 
         Parameters
         ----------
@@ -297,7 +297,7 @@ class GrocceryStore:
             curr_register.pushCustomer(next_customer)
 
     def addTimePacket(self, time_packet):
-        """ Add customer time stamp packet to the Groccery store to be proccessed during simulation.
+        """ Add customer time stamp packet to the Grocery store to be proccessed during simulation.
 
         Parameters
         ----------
@@ -320,7 +320,7 @@ class GrocceryStore:
                 self.pushCustomer(next_customer)
 
     def computeEndTime(self):
-        """Computes the end time for the Groccery store, once all customers checked out.
+        """Computes the end time for the Grocery store, once all customers checked out.
         
         Returns
         -------
@@ -333,7 +333,7 @@ class GrocceryStore:
         return final_time
     
     def show(self):
-        """Provides a simple visualization of current customer queue for each register in the Groccery Store."""
+        """Provides a simple visualization of current customer queue for each register in the Grocery Store."""
         for r in self.register_list:
             r.show()    
 
@@ -344,9 +344,9 @@ class Utility:
         input_file = sys.argv[1]
         f = open(input_file, "r")
 
-        # Parse first line for number of registers and initialize Groccery Store
+        # Parse first line for number of registers and initialize Grocery Store
         register_count = int(f.readline())
-        my_GS = GrocceryStore(register_count)
+        my_GS = GroceryStore(register_count)
 
         # Create customer time packet dictionary while reading
         packet_dict = {}
@@ -364,7 +364,7 @@ class Utility:
         return my_GS, packet_dict
 
     def preProcessPackets(my_GS, packet_dict):
-        # Adding customer time packets to the groccery store in pre-processing
+        # Adding customer time packets to the Grocery store in pre-processing
         for timeStamp in packet_dict.keys():
             my_GS.addTimePacket(Packet(timeStamp,packet_dict[timeStamp]))
 
