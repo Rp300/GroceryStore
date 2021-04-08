@@ -1,0 +1,26 @@
+# A simple test to check functionality of a single register and only one type of customer
+test1: t=7 minutes
+
+# Medium test, testing multiple registers(training vs non training rates) as well as alternating customer types
+test2: t=13 minutes
+
+# Tests that departing customers(custs with 0 items) when a new customer is processed to be added to a register
+test3: t=6 minutes
+
+# Test to illustrate that constraint of customer 'A' works effectively
+test4: t=9 minutes
+
+# Tests that in common arrival times customers of type 'A' select a register before 'B'
+test5: t=11
+
+# Tests that the customer 'A' constraint applies effectively to a larger amount of registers, with a single 'B' near the end to ensure the shortest line is picked.
+test6: t=24
+
+# Simple test to ensure that customer of type 'A' goes to first line when both lines have equal length
+test7: t=14 minutes
+
+# Simple test to ensure that customer of type 'B' goes to first line when all last customers have equal number of items
+test8: t=14 minutes
+
+# Hard test: tests that a single register orders a given customer arrival time packet as well as multiple type of customers
+test9: t=55 minutes
